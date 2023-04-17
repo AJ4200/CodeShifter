@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+.container {
+  font-family: 'Montserrat', sans-serif;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  background: linear-gradient(to bottom right, #f0f0f0, #fff);
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.form-label {
+  font-family: 'Montserrat', sans-serif;
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+.form-select,
+.form-textarea,
+.form-button {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.form-select {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #f8f8f8;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.form-textarea {
+  display: block;
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #f8f8f8;
+  resize: vertical;
+  min-height: 8rem;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.form-button {
+  display: block;
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #6c5ce7;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.form-button:hover {
+  background-color: #a29bfe;
+}
+
+.output {
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  white-space: pre-wrap;
+  color: #555;
+}
