@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { convertCode } from "./codeConverter";
 
 type Language = "javascript" | "python" | "ruby";
 
 export default function ConvertPage() {
-  const [code, setCode] = useState<string>("");
+  const [code, setCode] = useState("");
   const [fromLanguage, setFromLanguage] = useState<Language>("javascript");
   const [toLanguage, setToLanguage] = useState<Language>("python");
-  const [convertedCode, setConvertedCode] = useState<string>("");
+  const [convertedCode, setConvertedCode] = useState("");
   const [copied, setCopied] = useState(false);
   const [buttonClicked, setButtonClicked] = useState(false);
 
@@ -18,34 +19,21 @@ export default function ConvertPage() {
       setButtonClicked(false);
     }, 3000);
   };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const newCode = convertCode(code, fromLanguage, toLanguage);
     setConvertedCode(newCode);
   };
 
-  const convertCode = (code: string, fromLanguage: Language, toLanguage: Language): string => {
-    if (fromLanguage === "javascript" && toLanguage === "python") {
-      // Replace JavaScript-specific syntax with Python syntax using regular expressions
-      code = code.replace(/let/g, "def");
-      code = code.replace(/const/g, "");
-      code = code.replace(/;/g, "");
-      code = code.replace(/console\.log\((.*)\)/g, "print($1)");
-    } else if (fromLanguage === "python" && toLanguage === "javascript") {
-      // Replace Python-specific syntax with JavaScript syntax using regular expressions
-      code = code.replace(/def/g, "let");
-      code = code.replace(/print\((.*)\)/g, "console.log($1);");
-    }
-
-    return code;
-  };
-
   function copyToClipboard(convertedCode: string): void {
-    navigator.clipboard
-      .writeText(convertedCode)
-    //  .then(() => alert("Code copied to clipboard"))
-    //  .catch((err) => console.error("Could not copy code: ", err));
+    navigator.clipboard.writeText(convertedCode);
   }
+
+  useEffect(() => {
+    const container = document.querySelector(".container");
+    container?.classList.add("loaded");
+  }, []);
 
   return (
     <>
@@ -70,7 +58,6 @@ export default function ConvertPage() {
               <option value="ruby">Ruby</option>
             </select>
           </div>
-
           <div className="form-control">
             <label htmlFor="toLanguage" className={"form-label"}>
               Convert to:
@@ -82,41 +69,45 @@ export default function ConvertPage() {
               onChange={(e) => setToLanguage(e.target.value as Language)}
             >
               <option value="javascript">JavaScript</option>
-              <option value="python
-">Python</option>
-<option value="ruby">Ruby</option>
-</select>
-</div>      <div className="form-control">
-        <label htmlFor="code" className={"form-label"}>
-          Enter your code:
-        </label>
-        <textarea
-          id="code"
-          className="form-textarea"
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-        />
+              <option value="python">Python</option>
+              <option value="ruby">Ruby</option>
+            </select>
+          </div>
+          <div className="form-control">
+            <label htmlFor="code" className={"form-label"}>
+              Enter your code:
+            </label>
+            <textarea
+              id="code"
+              className="form-textarea"
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+            ></textarea>
+          </div>
+          <button
+            className="form-button"
+            onClick={() => setButtonClicked(true)}
+          >
+            Convert
+          </button>
+        </form>
+        {convertedCode && (
+          <>
+            <h2 className="form-label">Converted Code:</h2>
+            <pre className="output">{convertedCode}</pre>
+            <button
+              className={`form-button ${buttonClicked ? "clicked" : ""}`}
+              onClick={() => {
+                handleCopyClick(convertedCode);
+                setButtonClicked(true);
+              }}
+              disabled={copied}
+            >
+              {copied ? "Copied!" : "Copy Code"}
+            </button>
+          </>
+        )}
       </div>
-
-      <button className="form-button" type="submit" onClick={() => setButtonClicked(true)}>
-        Convert
-      </button>
-    </form>
-
-    {convertedCode && (
-      <div className="code-container">
-        <label htmlFor="convertedCode" className="form-label">
-          Converted code:
-        </label>
-        <pre id="convertedCode" className="code">
-          {convertedCode}
-        </pre>
-        <button className="copy-button" onClick={() => handleCopyClick(convertedCode)}>
-          {copied && buttonClicked ? "Copied!" : "Copy to clipboard"}
-        </button>
-      </div>
-    )}
-  </div>
-</>
-);
+    </>
+  );
 }
