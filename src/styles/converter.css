@@ -127,7 +127,7 @@ background-size: cover;
   border-radius: 0.5rem;
   border: none;
   cursor: pointer;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 4px #0000001a;
   transition: background-color 0.2s ease-in-out;
 }
 
@@ -163,4 +163,14 @@ background-size: cover;
 .form-button.clicked {
   background-color: green;
   color: white;
+}
+.note {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+  text-align: right;
+  transition: color 0.3s ease;
+  margin-top: 150px;
 }

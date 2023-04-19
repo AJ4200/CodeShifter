@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { convertCode } from "./codeConverter";
 
-type Language = "javascript" | "python" | "ruby";
+type Language = "javascript" | "python" | "ruby" | "typescript" | "java" | "csharp";
 
 export default function ConvertPage() {
   const [code, setCode] = useState("");
@@ -10,6 +9,33 @@ export default function ConvertPage() {
   const [convertedCode, setConvertedCode] = useState("");
   const [copied, setCopied] = useState(false);
   const [buttonClicked, setButtonClicked] = useState(false);
+
+  const convertCode = (code: string, fromLanguage: Language, toLanguage: Language): string => {
+    if (fromLanguage === "javascript" && toLanguage === "python") {
+      // Replace JavaScript-specific syntax with Python syntax using regular expressions
+      code = code.replace(/let/g, "def");
+      code = code.replace(/const/g, "");
+      code = code.replace(/;/g, "");
+      code = code.replace(/console\.log\((.*)\)/g, "print($1)");
+    } else if (fromLanguage === "python" && toLanguage === "javascript") {
+      // Replace Python-specific syntax with JavaScript syntax using regular expressions
+      code = code.replace(/def/g, "let");
+      code = code.replace(/print\((.*)\)/g, "console.log($1);");
+    } else if (fromLanguage === "typescript" && toLanguage === "javascript") {
+      // Remove TypeScript-specific syntax
+      code = code.replace(/: /g, " ");
+    } else if (fromLanguage === "java" && toLanguage === "python") {
+      // Replace Java-specific syntax with Python syntax using regular expressions
+      code = code.replace(/public static void main\(String\[\] args\)/g, "def main():");
+      code = code.replace(/System\.out\.println\((.*)\)/g, "print($1)");
+    } else if (fromLanguage === "csharp" && toLanguage === "python") {
+      // Replace C#-specific syntax with Python syntax using regular expressions
+      code = code.replace(/using System;/g, "");
+      code = code.replace(/Console\.WriteLine\((.*)\);/g, "print($1)");
+    }
+
+    return code;
+  };
 
   const handleCopyClick = (code: string) => {
     copyToClipboard(code);
@@ -48,50 +74,57 @@ export default function ConvertPage() {
               Convert from:
             </label>
             <select
-              id="fromLanguage"
-              className="form-select"
-              value={fromLanguage}
-              onChange={(e) => setFromLanguage(e.target.value as Language)}
-            >
-              <option value="javascript">JavaScript</option>
-              <option value="python">Python</option>
-              <option value="ruby">Ruby</option>
-            </select>
-          </div>
-          <div className="form-control">
-            <label htmlFor="toLanguage" className={"form-label"}>
-              Convert to:
-            </label>
-            <select
-              id="toLanguage"
-              className="form-select"
-              value={toLanguage}
-              onChange={(e) => setToLanguage(e.target.value as Language)}
-            >
-              <option value="javascript">JavaScript</option>
-              <option value="python">Python</option>
-              <option value="ruby">Ruby</option>
-            </select>
-          </div>
-          <div className="form-control">
-            <label htmlFor="code" className={"form-label"}>
-              Enter your code:
-            </label>
-            <textarea
-              id="code"
-              className="form-textarea"
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
-            ></textarea>
-          </div>
-          <button
-            className="form-button"
-            onClick={() => setButtonClicked(true)}
-          >
-            Convert
-          </button>
-        </form>
-        {convertedCode && (
+          id="fromLanguage"
+          value={fromLanguage}
+          onChange={(e) => setFromLanguage(e.target.value as Language)}
+          className={"form-select"}
+        >
+          <option value="javascript">JavaScript</option>
+          <option value="python">Python</option>
+          <option value="ruby">Ruby</option>
+          <option value="typescript">TypeScript</option>
+          <option value="java">Java</option>
+          <option value="csharp">C#</option>
+        </select>
+      </div>
+      <div className="form-control">
+        <label htmlFor="toLanguage" className={"form-label"}>
+          Convert to:
+        </label>
+        <select
+          id="toLanguage"
+          value={toLanguage}
+          onChange={(e) => setToLanguage(e.target.value as Language)}
+          className={"form-select"}
+        >
+          <option value="javascript">JavaScript</option>
+          <option value="python">Python</option>
+          <option value="ruby">Ruby</option>
+          <option value="typescript">TypeScript</option>
+          <option value="java">Java</option>
+          <option value="csharp">C#</option>
+        </select>
+      </div>
+      <div className="form-control">
+        <label htmlFor="code" className={"form-label"}>
+          Enter your code:
+        </label>
+        <textarea
+          id="code"
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+          className={"form-textarea"}
+        />
+      </div>
+      <button
+        type="submit"
+        onClick={() => setButtonClicked(true)}
+        className={"form-button"}
+      >
+        {buttonClicked ? "Converted!" : "Convert"}
+      </button>
+    </form>
+    {convertedCode && (
           <>
             <h2 className="form-label">Converted Code:</h2>
             <pre className="output">{convertedCode}</pre>
@@ -107,7 +140,6 @@ export default function ConvertPage() {
             </button>
           </>
         )}
-      </div>
-    </>
-  );
+  </div>
+</>);
 }
