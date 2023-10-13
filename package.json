@@ -1,6 +1,6 @@
 {
-  "name": "ai-forge",
-  "version": "0.1.0",
+  "name": "codeshifter",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,23 +8,23 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "dependencies": {
-    "@codemirror/legacy-modes": "^6.3.2",
-    "@uiw/codemirror-theme-tokyo-night": "^4.19.11",
-    "@uiw/react-codemirror": "^4.19.11",
-    "endent": "^2.1.0",
-    "eventsource-parser": "^1.0.0",
-    "@types/node": "18.15.11",
-    "@types/react": "18.0.35",
-    "@types/react-dom": "18.0.11",
-    "autoprefixer": "10.4.14",
-    "eslint": "8.38.0",
-    "eslint-config-next": "13.3.0",
-    "next": "13.3.0",
-    "postcss": "8.4.22",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "tailwindcss": "3.3.1",
-    "typescript": "5.0.4"
-  }
+"dependencies": {
+    "@codemirror/legacy-modes": "latest",
+    "@uiw/codemirror-theme-tokyo-night": "latest",
+    "@uiw/react-codemirror": "latest",
+    "endent": "latest",
+    "eventsource-parser": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "autoprefixer": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "next": "latest",
+    "postcss": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "tailwindcss": "latest",
+    "typescript": "latest"
+}
 }
