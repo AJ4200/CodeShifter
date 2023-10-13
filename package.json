@@ -8,12 +8,25 @@
     "start": "next start",
     "lint": "next lint"
   },
-"dependencies": {
-
+  "dependencies": {
+    "@codemirror/legacy-modes": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@uiw/codemirror-theme-tokyo-night": "latest",
+    "@uiw/react-codemirror": "latest",
+    "autoprefixer": "latest",
+    "endent": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "eventsource-parser": "latest",
+    "framer-motion": "^10.16.4",
+    "next": "latest",
     "postcss": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-icons": "^4.11.0",
     "tailwindcss": "latest",
     "typescript": "latest"
-}
+  }
 }

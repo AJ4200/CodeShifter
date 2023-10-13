@@ -1,5 +1,6 @@
 import { APIKeyInput } from "@/components/APIKeyInput";
 import { CodeBlock } from "@/components/CodeBlock";
+import Footer from "@/components/Footer";
 import { LanguageSelect } from "@/components/LanguageSelect";
 import { ModelSelect } from "@/components/ModelSelect";
 import { TextBlock } from "@/components/TextBlock";
@@ -129,11 +130,7 @@ export default function Homepage() {
   return (
     <>
 
-      <div className="flex h-full min-h-screen flex-col items-center bg-[#0E1117] px-4 pb-20 text-neutral-200 sm:px-10">
-        <div className="mt-10 flex flex-col items-center justify-center sm:mt-20">
-          <div className="text-4xl font-bold">AI Code Translator</div>
-        </div>
-
+      <div className="container flex h-full min-h-screen flex-col items-center px-4 pb-20 text-neutral-200 sm:px-10">
         <div className="mt-6 text-center text-sm">
           <APIKeyInput apiKey={apiKey} onChange={handleApiKeyChange} />
         </div>
@@ -146,16 +143,16 @@ export default function Homepage() {
             onClick={() => handleTranslate()}
             disabled={loading}
           >
-            {loading ? "Translating..." : "Translate"}
+            {loading ? "Shifting..." : "Shift"}
           </button>
         </div>
 
         <div className="mt-2 text-center text-xs">
           {loading
-            ? "Translating..."
+            ? "Shifting..."
             : hasTranslated
-            ? "Output copied to clipboard!"
-            : 'Enter some code and click "Translate"'}
+            ? "Copied to clipboard!"
+            : 'Enter your OpenAI API key then click "Shift"'}
         </div>
 
         <div className="mt-6 flex w-full max-w-[1200px] flex-col justify-between sm:flex-row sm:space-x-4">
@@ -211,6 +208,7 @@ export default function Homepage() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

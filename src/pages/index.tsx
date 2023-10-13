@@ -26,7 +26,7 @@ export default function Home() {
             </p>
           </div>
         ) : (
-          <p>Server under maintenance</p>
+          <ConvertPage />
         )}
       </main>
     </>
