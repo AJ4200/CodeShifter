@@ -1,6 +1,7 @@
 import { APIKeyInput } from "@/components/APIKeyInput";
 import { CodeBlock } from "@/components/CodeBlock";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import { LanguageSelect } from "@/components/LanguageSelect";
 import { ModelSelect } from "@/components/ModelSelect";
 import { TextBlock } from "@/components/TextBlock";
@@ -129,35 +130,13 @@ export default function Homepage() {
 
   return (
     <>
-
-      <div className="container flex h-full min-h-screen flex-col items-center px-4 pb-20 text-neutral-200 sm:px-10">
-        <div className="mt-6 text-center text-sm">
-          <APIKeyInput apiKey={apiKey} onChange={handleApiKeyChange} />
-        </div>
-
-        <div className="mt-2 flex items-center space-x-2">
-          <ModelSelect model={model} onChange={(value) => setModel(value)} />
-
-          <button
-            className="w-[140px] cursor-pointer rounded-md bg-violet-500 px-4 py-2 font-bold hover:bg-violet-600 active:bg-violet-700"
-            onClick={() => handleTranslate()}
-            disabled={loading}
-          >
-            {loading ? "Shifting..." : "Shift"}
-          </button>
-        </div>
-
-        <div className="mt-2 text-center text-xs">
-          {loading
-            ? "Shifting..."
-            : hasTranslated
-            ? "Copied to clipboard!"
-            : 'Enter your OpenAI API key then click "Shift"'}
-        </div>
-
-        <div className="mt-6 flex w-full max-w-[1200px] flex-col justify-between sm:flex-row sm:space-x-4">
-          <div className="h-100 flex flex-col justify-center space-y-2 sm:w-2/4">
-            <div className="text-center text-xl font-bold">Input</div>
+      <Header />
+      <div className="maincontainer flex h-full flex-col items-center px-4 text-neutral-200 w-full">
+        <div className="mt-6 flex w-full flex-col sm:flex-row sm:space-x-4">
+          <div className="h-100 flex flex-col justify-center space-y-2 w-1/2">
+            <div className="textshadow text-center text-xl font-bold">
+              Original Code
+            </div>
 
             <LanguageSelect
               language={inputLanguage}
@@ -189,8 +168,10 @@ export default function Homepage() {
               />
             )}
           </div>
-          <div className="mt-8 flex h-full flex-col justify-center space-y-2 sm:mt-0 sm:w-2/4">
-            <div className="text-center text-xl font-bold">Output</div>
+          <div className="mt-8 flex h-full w-1/2 flex-col justify-center space-y-2 sm:mt-0 sm:w-2/4">
+            <div className="text-center text-xl font-bold textshadow">
+              Shifted Code
+            </div>
 
             <LanguageSelect
               language={outputLanguage}
@@ -207,8 +188,30 @@ export default function Homepage() {
             )}
           </div>
         </div>
+        <div className="mt-2 text-center text-xs textshadow">
+          {loading
+            ? "Shifting..."
+            : hasTranslated
+            ? "Copied to clipboard!"
+            : 'Enter your OpenAI API key then click "Shift"'}
+        </div>
+        <div className="mt-6 text-center text-sm">
+          <APIKeyInput apiKey={apiKey} onChange={handleApiKeyChange} />
+        </div>
+
+        <div className="mt-2 mb-4 flex items-center space-x-2">
+          <ModelSelect model={model} onChange={(value) => setModel(value)} />
+
+          <button
+            className="w-[140px] cursor-pointer rounded-md bg-white text-black px-4 py-2 font-bold hover:bg-gray-600/20 active:bg-gray-700"
+            onClick={() => handleTranslate()}
+            disabled={loading}
+          >
+            {loading ? "Shifting..." : "Shift"}
+          </button>
+        </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

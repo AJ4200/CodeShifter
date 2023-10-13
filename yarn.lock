@@ -360,6 +360,13 @@
     "@codemirror/state" "^6.0.0"
     "@codemirror/view" "^6.0.0"
 
+"@uiw/codemirror-theme-dracula@^4.21.20":
+  version "4.21.20"
+  resolved "https://registry.npmjs.org/@uiw/codemirror-theme-dracula/-/codemirror-theme-dracula-4.21.20.tgz"
+  integrity sha512-ab9Knw3rLcq39c7yFFKICEW6z5o3huaa/TVQKFCq2I7ALnWUcctmd9dQjY6ECS1S9Xm4uPKzow3O2QvF4BWqQA==
+  dependencies:
+    "@uiw/codemirror-themes" "4.21.20"
+
 "@uiw/codemirror-theme-tokyo-night@latest":
   version "4.21.20"
   resolved "https://registry.npmjs.org/@uiw/codemirror-theme-tokyo-night/-/codemirror-theme-tokyo-night-4.21.20.tgz"
@@ -2082,6 +2089,16 @@ prelude-ls@^1.2.1:
   version "1.2.1"
   resolved "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.2.1.tgz"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
+
+prettier-plugin-tailwindcss@^0.5.6:
+  version "0.5.6"
+  resolved "https://registry.npmjs.org/prettier-plugin-tailwindcss/-/prettier-plugin-tailwindcss-0.5.6.tgz"
+  integrity sha512-2Xgb+GQlkPAUCFi3sV+NOYcSI5XgduvDBL2Zt/hwJudeKXkyvRS65c38SB0yb9UB40+1rL83I6m0RtlOQ8eHdg==
+
+prettier@^3.0, prettier@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.npmjs.org/prettier/-/prettier-3.0.3.tgz"
+  integrity sha512-L/4pUDMxcNa8R/EthV08Zt42WBO4h1rarVtK0K+QJG0X187OLo7l699jWw0GKuwzkPQ//jMFA/8Xm6Fh3J/DAg==
 
 prop-types@^15.8.1:
   version "15.8.1"

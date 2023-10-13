@@ -13,7 +13,7 @@ export const ModelSelect: FC<Props> = ({ model, onChange }) => {
 
   return (
     <select
-      className="h-[40px] w-[140px] rounded-md bg-[#1F2937] px-4 py-2 text-neutral-200"
+      className="shadow-2xl rounded-md bg-gray-900/60 p-2 backdrop-blur-sm"
       value={model}
       onChange={handleChange}
     >

@@ -1,6 +1,6 @@
 import { StreamLanguage } from '@codemirror/language';
 import { go } from '@codemirror/legacy-modes/mode/go';
-import { tokyoNight } from '@uiw/codemirror-theme-tokyo-night';
+import { dracula } from "@uiw/codemirror-theme-dracula";
 import CodeMirror from '@uiw/react-codemirror';
 import { FC, useEffect, useState } from 'react';
 
@@ -26,9 +26,9 @@ export const CodeBlock: FC<Props> = ({
   }, [copyText]);
 
   return (
-    <div className="relative">
+    <div className="relative rounded-md">
       <button
-        className="absolute right-0 top-0 z-10 rounded bg-[#1A1B26] p-1 text-xs text-white hover:bg-[#2D2E3A] active:bg-[#2D2E3A]"
+        className="absolute right-0 top-0 z-10 rounded bg-transparent p-1 text-xs text-white hover:bg-[#2D2E3A] active:bg-[#2D2E3A]"
         onClick={() => {
           navigator.clipboard.writeText(code);
           setCopyText('Copied!');
@@ -40,10 +40,9 @@ export const CodeBlock: FC<Props> = ({
       <CodeMirror
         editable={editable}
         value={code}
-        minHeight="500px"
         extensions={[StreamLanguage.define(go)]}
-        theme={tokyoNight}
-        onChange={(value) => onChange(value)}
+        theme={dracula}
+        onChange={(value:any) => onChange(value)}    
       />
     </div>
   );

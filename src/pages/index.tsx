@@ -17,14 +17,9 @@ export default function Home() {
         <title>CodeShifter</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <main className="flex flex-col items-center justify-between p-24">
         {loading ? (
-          <div className="spinner">
-            <p className="note">
-              NOTE:This tool only converts syntax for now. Logic conversion is
-              still under development
-            </p>
-          </div>
+          <div className="spinner"/>
         ) : (
           <ConvertPage />
         )}

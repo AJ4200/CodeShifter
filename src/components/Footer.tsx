@@ -5,12 +5,12 @@ const Footer = () => {
   const socialLinks = [
     {
       name: "LinkedIn",
-      url: "https://www.linkedin.com/in/aj4200",
+      url: "https://www.linkedin.com/in/abel-majadibodu-5a0583193/",
       icon: <FaLinkedin />,
     },
     {
       name: "GitHub",
-      url: "https://github.com/aj4200",
+      url: "https://github.com/AJ4200",
       icon: <FaGithub />,
     },
   ];
@@ -18,7 +18,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="">
+    <footer className="fixed bottom-1">
       <div className="mx-auto py-4 flex">
         <div className="flex items-center space-x-1 pr-1">
           {socialLinks.map((link, index) => (
@@ -27,7 +27,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               key={index}
-              className="text-gray-500 hover:text-gray-700 transition-colors duration-300"
+              className="text-black hover:text-white transition-colors duration-300"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -35,7 +35,7 @@ const Footer = () => {
             </motion.a>
           ))}
         </div>
-        <p className="text-center text-gray-500">
+        <p className="text-center text-gray-200 textshadow">
          by aj4200 &copy; {currentYear}. All rights reserved.
         </p>
       </div>

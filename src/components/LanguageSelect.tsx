@@ -12,7 +12,7 @@ export const LanguageSelect: FC<Props> = ({ language, onChange }) => {
 
   return (
     <select
-      className="w-full rounded-md bg-[#1F2937] px-4 py-2 text-neutral-200"
+      className="shadow-2xl rounded-md bg-gray-900/30 p-1 backdrop-blur-sm"
       value={language}
       onChange={handleChange}
     >
