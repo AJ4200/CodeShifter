@@ -15,7 +15,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="z-50 fixed -top-2 shadow-lg backdrop-blur-md bg-gray-400/20 w-full flex justify-center  px-4 py-2">
+    <header className="z-50 fixed -top-2 shadow-lg backdrop-blur-sm bg-gray-400/20 w-full flex justify-center  px-4 py-2">
       <h1 className="text-6xl font-bold text-center text-white textshadow">
         Code Shifter
         <span className="text-xs border border-white shadow-2xl rounded-md p-1">

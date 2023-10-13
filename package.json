@@ -27,6 +27,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-icons": "^4.11.0",
+    "sonner": "^1.0.3",
     "tailwindcss": "latest",
     "typescript": "latest"
   },

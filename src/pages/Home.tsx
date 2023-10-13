@@ -6,6 +6,7 @@ import { LanguageSelect } from "@/components/LanguageSelect";
 import { ModelSelect } from "@/components/ModelSelect";
 import { TextBlock } from "@/components/TextBlock";
 import { OpenAIModel, TranslateBody } from "@/types/types";
+import { Toaster, toast } from "sonner";
 import { useEffect, useState } from "react";
 
 export default function Homepage() {
@@ -22,23 +23,23 @@ export default function Homepage() {
     const maxCodeLength = model === "gpt-3.5-turbo" ? 6000 : 12000;
 
     if (!apiKey) {
-      alert("Please enter an API key.");
+      toast.error("Please enter your API key.");
       return;
     }
 
     if (inputLanguage === outputLanguage) {
-      alert("Please select different languages.");
+      toast.error("Please select different languages.");
       return;
     }
 
     if (!inputCode) {
-      alert("Please enter some code.");
+      toast.error("Your API Key is Invalid. Try Again");
       return;
     }
 
     if (inputCode.length > maxCodeLength) {
-      alert(
-        `Please enter code less than ${maxCodeLength} characters. You are currently at ${inputCode.length} characters.`
+      toast.error(
+        `Please enter code less than ${maxCodeLength} characters. You are currently at ${inputCode.length} characters.`,
       );
       return;
     }
@@ -67,7 +68,7 @@ export default function Homepage() {
 
     if (!response.ok) {
       setLoading(false);
-      alert("Something went wrong.");
+      toast.error("Something went wrong.");
       return;
     }
 
@@ -75,7 +76,7 @@ export default function Homepage() {
 
     if (!data) {
       setLoading(false);
-      alert("Something went wrong.");
+      toast.error("Something went wrong.");
       return;
     }
 
@@ -131,9 +132,9 @@ export default function Homepage() {
   return (
     <>
       <Header />
-      <div className="maincontainer flex h-full flex-col items-center px-4 text-neutral-200 w-full">
+      <div className="maincontainer flex h-full w-full flex-col items-center px-4 text-neutral-200">
         <div className="mt-6 flex w-full flex-col sm:flex-row sm:space-x-4">
-          <div className="h-100 flex flex-col justify-center space-y-2 w-1/2">
+          <div className="h-100 flex w-1/2 flex-col justify-center space-y-2">
             <div className="textshadow text-center text-xl font-bold">
               Original Code
             </div>
@@ -169,7 +170,7 @@ export default function Homepage() {
             )}
           </div>
           <div className="mt-8 flex h-full w-1/2 flex-col justify-center space-y-2 sm:mt-0 sm:w-2/4">
-            <div className="text-center text-xl font-bold textshadow">
+            <div className="textshadow text-center text-xl font-bold">
               Shifted Code
             </div>
 
@@ -188,7 +189,7 @@ export default function Homepage() {
             )}
           </div>
         </div>
-        <div className="mt-2 text-center text-xs textshadow">
+        <div className="textshadow mt-2 text-center text-xs">
           {loading
             ? "Shifting..."
             : hasTranslated
@@ -199,11 +200,11 @@ export default function Homepage() {
           <APIKeyInput apiKey={apiKey} onChange={handleApiKeyChange} />
         </div>
 
-        <div className="mt-2 mb-4 flex items-center space-x-2">
+        <div className="mb-4 mt-2 flex items-center space-x-2">
           <ModelSelect model={model} onChange={(value) => setModel(value)} />
 
           <button
-            className="w-[140px] cursor-pointer rounded-md bg-white text-black px-4 py-2 font-bold hover:bg-gray-600/20 active:bg-gray-700"
+            className="w-[140px] cursor-pointer rounded-md bg-white px-4 py-2 font-bold text-black hover:bg-gray-600/20 active:bg-gray-700"
             onClick={() => handleTranslate()}
             disabled={loading}
           >
@@ -212,6 +213,7 @@ export default function Homepage() {
         </div>
       </div>
       <Footer />
+      <Toaster richColors position="top-right" expand/>
     </>
   );
 }

@@ -27,7 +27,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               key={index}
-              className="text-black hover:text-white transition-colors duration-300"
+              className="text-black hover:text-gray-500 transition-colors duration-300"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -35,7 +35,7 @@ const Footer = () => {
             </motion.a>
           ))}
         </div>
-        <p className="text-center text-gray-200 textshadow">
+        <p className="text-center text-black textshadow">
          by aj4200 &copy; {currentYear}. All rights reserved.
         </p>
       </div>

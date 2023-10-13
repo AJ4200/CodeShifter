@@ -13,7 +13,7 @@ export const ModelSelect: FC<Props> = ({ model, onChange }) => {
 
   return (
     <select
-      className="shadow-2xl rounded-md bg-gray-900/60 p-2 backdrop-blur-sm"
+      className="shadow-2xl rounded-md bg-gray-900/30 p-2 backdrop-blur-sm"
       value={model}
       onChange={handleChange}
     >

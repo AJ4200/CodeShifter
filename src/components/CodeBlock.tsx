@@ -42,7 +42,9 @@ export const CodeBlock: FC<Props> = ({
         value={code}
         extensions={[StreamLanguage.define(go)]}
         theme={dracula}
-        onChange={(value:any) => onChange(value)}    
+        onChange={(value: any) => onChange(value)}    
+        maxHeight={"250px"}
+        height='250px'
       />
     </div>
   );
