@@ -15,7 +15,6 @@ export default function Home() {
     <>
       <Head>
         <title>CodeShifter</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main className="flex flex-col items-center justify-between p-24">
         {loading ? (
