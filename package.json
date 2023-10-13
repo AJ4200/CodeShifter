@@ -9,18 +9,7 @@
     "lint": "next lint"
   },
 "dependencies": {
-    "@codemirror/legacy-modes": "latest",
-    "@uiw/codemirror-theme-tokyo-night": "latest",
-    "@uiw/react-codemirror": "latest",
-    "endent": "latest",
-    "eventsource-parser": "latest",
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "autoprefixer": "latest",
-    "eslint": "latest",
-    "eslint-config-next": "latest",
-    "next": "latest",
+
     "postcss": "latest",
     "react": "latest",
     "react-dom": "latest",
