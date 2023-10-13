@@ -118,7 +118,7 @@ export default function Homepage() {
     if (hasTranslated) {
       handleTranslate();
     }
-  }, [outputLanguage]);
+  });
 
   useEffect(() => {
     const apiKey = localStorage.getItem("apiKey");
