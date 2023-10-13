@@ -1,15 +1,25 @@
 import { useState, useEffect } from "react";
-import { Inter } from "next/font/google";
 import ConvertPage from "./Home";
 import Head from "next/head";
 
-
 export default function Home() {
   const [loading, setLoading] = useState(true);
+  const [connected, setConnected] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 5000); // set loading to false after 4 seconds
+    const timer = setTimeout(() => setLoading(false), 7000);
+    return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      const connectedTimer = setTimeout(() => {
+        setConnected(true);
+      }, 5000);
+
+      return () => clearTimeout(connectedTimer);
+    }
+  }, [loading]);
 
   return (
     <>
@@ -19,9 +29,15 @@ export default function Home() {
       </Head>
       <main className="flex flex-col items-center justify-between p-24">
         {loading ? (
-          <div className="spinner"/>
-        ) : (
+          <div className="spinner">
+            <p className="fixed p-1 font-semibold bg-gray-200/30 top-40 rounded-md">OpenAI API Connecting...</p>
+          </div>
+        ) : connected ? (
           <ConvertPage />
+        ) : (
+          <div className="spinner">
+            <p className="fixed p-1 font-semibold bg-gray-200/30 top-40 rounded-md">Connected...</p>
+          </div>
         )}
       </main>
     </>
