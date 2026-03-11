@@ -1,43 +1,41 @@
-import { FaLinkedin, FaGithub } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   const socialLinks = [
     {
       name: "LinkedIn",
       url: "https://www.linkedin.com/in/abel-majadibodu-5a0583193/",
-      icon: <FaLinkedin />,
+      icon: <FaLinkedin size={16} />,
     },
     {
       name: "GitHub",
       url: "https://github.com/AJ4200",
-      icon: <FaGithub />,
+      icon: <FaGithub size={16} />,
     },
   ];
 
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="fixed bottom-1">
-      <div className="mx-auto py-4 flex">
-        <div className="flex items-center space-x-1 pr-1">
-          {socialLinks.map((link, index) => (
-            <motion.a
+    <footer className="w-full border-t border-border bg-surface/60 py-4">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 sm:flex-row sm:px-6">
+        <p className="text-xs text-muted">
+          &copy; {currentYear} aj4200 &mdash; All rights reserved.
+        </p>
+        <div className="flex items-center gap-3">
+          {socialLinks.map((link) => (
+            <a
+              key={link.name}
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              key={index}
-              className="text-black hover:text-gray-500 transition-colors duration-300"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
+              aria-label={link.name}
+              className="text-muted transition-colors duration-200 hover:text-foreground"
             >
               {link.icon}
-            </motion.a>
+            </a>
           ))}
         </div>
-        <p className="text-center text-black textshadow">
-         by aj4200 &copy; {currentYear}. All rights reserved.
-        </p>
       </div>
     </footer>
   );
