@@ -10,12 +10,21 @@ export const TextBlock: React.FC<Props> = ({
   onChange = () => {},
 }) => {
   return (
-    <textarea
-      className="w-full bg-gray-900/10 p-4 text-[15px] text-neutral-200 focus:outline-none"
-      style={{ resize: 'none' }}
-      value={text}
-      onChange={(e) => onChange(e.target.value)}
-      disabled={!editable}
-    />
+    <div className="flex-1 overflow-hidden rounded-xl border border-border bg-surface">
+      <div className="flex items-center border-b border-border px-3 py-1.5">
+        <div className="flex gap-1.5">
+          <span className="h-3 w-3 rounded-full bg-red-500/70" />
+          <span className="h-3 w-3 rounded-full bg-yellow-500/70" />
+          <span className="h-3 w-3 rounded-full bg-green-500/70" />
+        </div>
+      </div>
+      <textarea
+        className="h-[280px] w-full resize-none bg-transparent p-4 font-mono text-sm leading-relaxed text-foreground placeholder:text-muted focus:outline-none"
+        value={text}
+        onChange={(e) => onChange(e.target.value)}
+        disabled={!editable}
+        placeholder={editable ? "Describe your code in plain English..." : ""}
+      />
+    </div>
   );
 };
