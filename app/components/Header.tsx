@@ -1,6 +1,7 @@
-import { LuGithub, LuLinkedin, LuSparkles } from "react-icons/lu";
+import { LuGithub, LuLinkedin } from "react-icons/lu";
 import { Badge } from "./ui/badge";
 import { ThemeToggle } from "./ThemeToggle";
+import LogoMark from "./LogoMark";
 
 const Header = () => {
   const socialLinks = [
@@ -20,13 +21,19 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary ring-1 ring-primary/30">
-            <LuSparkles size={18} />
+          <LogoMark className="h-10 w-10" />
+          <div className="flex flex-col leading-none md:hidden">
+            <span className="text-base font-semibold tracking-tight text-foreground">
+              CodeShifter
+            </span>
+            <span className="text-[11px] text-muted-foreground">
+              Groq-powered code translation
+            </span>
           </div>
           <span className="sr-only">CodeShifter</span>
         </div>
 
-        <div className="pointer-events-none absolute left-1/2 top-1/2 flex w-full max-w-[70%] -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center leading-none">
+        <div className="pointer-events-none absolute left-1/2 top-1/2 hidden w-full max-w-[70%] -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center leading-none md:flex">
           <span className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
             CodeShifter
           </span>

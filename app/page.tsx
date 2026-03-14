@@ -16,6 +16,7 @@ import { Toaster, toast } from "sonner";
 import { CodeBlock } from "./components/CodeBlock";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import LogoMark from "./components/LogoMark";
 import { LanguageSelect } from "./components/LanguageSelect";
 import { ModelSelect } from "./components/ModelSelect";
 import { TextBlock } from "./components/TextBlock";
@@ -165,9 +166,10 @@ export default function HomePage() {
         aria-hidden={!showSplash}
       >
         <div className="flex flex-col items-center gap-4 text-center">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-primary/40 bg-primary/10 text-primary shadow-lg shadow-black/20 animate-float">
-            <LuSparkles size={28} />
-          </div>
+          <LogoMark
+            className="h-16 w-16 animate-float shadow-lg shadow-black/20"
+            labelClassName="text-sm tracking-[0.3em]"
+          />
           <div className="space-y-1">
             <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
               CodeShifter

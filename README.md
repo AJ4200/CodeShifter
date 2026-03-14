@@ -1,38 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+﻿# CodeShifter
+
+CodeShifter is a Groq-powered code translator that shifts code across languages in seconds. Choose a mode, pick a model, paste your input, and get clean output with automatic copy-to-clipboard.
+
+## Features
+- Code-to-code and natural-language-to-code modes
+- 40+ language targets
+- Groq model selection
+- Fast streaming-free responses
+- Polished cyan/black/white UI with shadcn-style components
+
+## Tech Stack
+- Next.js (App Router)
+- AI SDK + Groq
+- Tailwind CSS
+- Radix UI + shadcn-style components
+- CodeMirror editor
 
 ## Getting Started
-
-First, run the development server:
+1. Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+```
+
+2. Create a `.env` file with your Groq API key:
+
+```bash
+GROQ_API_KEY=your_api_key_here
+```
+
+3. Run the dev server:
+
+```bash
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open the app:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-[Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers) can be accessed on [http://localhost:3000/api/translate](http://localhost:3000/api/translate). This endpoint can be edited in `app/api/translate/route.ts`.
+## API
+`POST /api/translate`
 
-The `app/api` directory is mapped to `/api/*` via Route Handlers. Each `route.ts` file defines an endpoint.
+Body:
+- `inputLanguage` (string)
+- `outputLanguage` (string)
+- `inputCode` (string)
+- `model` (string)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Montserrat, a custom Google Font.
+Returns plain text output from the model.
 
-## Learn More
+## Scripts
+- `pnpm dev`
+- `pnpm build`
+- `pnpm start`
+- `pnpm lint`
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Credits
+Built by aj4200.
