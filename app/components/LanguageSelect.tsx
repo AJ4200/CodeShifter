@@ -1,4 +1,13 @@
-import type { FC } from "react";
+﻿import type { FC } from "react";
+
+import { Label } from "./ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 interface Props {
   language: string;
@@ -64,21 +73,19 @@ export const LanguageSelect: FC<Props> = ({
 }) => {
   return (
     <div className="flex flex-col gap-1">
-      {label && <label className="text-xs font-medium text-muted">{label}</label>}
-      <select
-        disabled={disabled}
-        className={`w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-foreground transition-colors focus:border-accent focus:outline-none ${
-          disabled ? "cursor-not-allowed opacity-60" : "hover:border-accent/70"
-        }`}
-        value={language}
-        onChange={(e) => onChange(e.target.value)}
-      >
-        {languages.map((lang) => (
-          <option key={lang.value} value={lang.value} className="bg-surface">
-            {lang.label}
-          </option>
-        ))}
-      </select>
+      {label && <Label>{label}</Label>}
+      <Select value={language} onValueChange={onChange} disabled={disabled}>
+        <SelectTrigger className="bg-background/90">
+          <SelectValue placeholder="Select language" />
+        </SelectTrigger>
+        <SelectContent>
+          {languages.map((lang) => (
+            <SelectItem key={lang.value} value={lang.value}>
+              {lang.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
     </div>
   );
 };

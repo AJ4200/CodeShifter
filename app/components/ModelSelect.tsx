@@ -1,5 +1,14 @@
-﻿import { GroqModel } from "../types/types";
-import { FC } from "react";
+﻿import { FC } from "react";
+
+import { GroqModel } from "../types/types";
+import { Label } from "./ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 interface Props {
   model: GroqModel;
@@ -32,19 +41,19 @@ const MODELS: { value: GroqModel; label: string; description: string }[] = [
 export const ModelSelect: FC<Props> = ({ model, onChange }) => {
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-xs font-medium text-muted">Model</label>
-      <select
-        className="rounded-lg border border-border bg-surface px-3 py-2 text-sm text-foreground transition-colors focus:border-accent focus:outline-none hover:border-accent/70"
-        value={model}
-        onChange={(e) => onChange(e.target.value as GroqModel)}
-      >
-        {MODELS.map((m) => (
-          <option key={m.value} value={m.value} className="bg-surface">
-            {m.label} - {m.description}
-          </option>
-        ))}
-      </select>
+      <Label>Model</Label>
+      <Select value={model} onValueChange={(value) => onChange(value as GroqModel)}>
+        <SelectTrigger className="bg-background/90">
+          <SelectValue placeholder="Select model" />
+        </SelectTrigger>
+        <SelectContent>
+          {MODELS.map((m) => (
+            <SelectItem key={m.value} value={m.value}>
+              {m.label} - {m.description}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
     </div>
   );
 };
-

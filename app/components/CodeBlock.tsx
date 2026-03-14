@@ -5,8 +5,9 @@ import { go } from "@codemirror/legacy-modes/mode/go";
 import { tokyoNight } from "@uiw/codemirror-theme-tokyo-night";
 import CodeMirror from "@uiw/react-codemirror";
 import { FC, useEffect, useState } from "react";
-import { FiCheck, FiCopy, FiX } from "react-icons/fi";
+import { LuCheck, LuCopy, LuX } from "react-icons/lu";
 import { copyToClipboard } from "../utils/copy";
+import { Button } from "./ui/button";
 
 interface Props {
   code: string;
@@ -36,35 +37,37 @@ export const CodeBlock: FC<Props> = ({
   };
 
   return (
-    <div className="relative flex-1 overflow-hidden rounded-xl border border-border bg-surface">
-      <div className="flex items-center justify-between border-b border-border px-3 py-1.5">
+    <div className="relative flex-1 overflow-hidden rounded-2xl border border-border/60 bg-background/80 shadow-sm">
+      <div className="flex items-center justify-between border-b border-border/60 bg-muted/40 px-3 py-2">
         <div className="flex gap-1.5">
-          <span className="h-3 w-3 rounded-full bg-red-500/70" />
-          <span className="h-3 w-3 rounded-full bg-yellow-500/70" />
-          <span className="h-3 w-3 rounded-full bg-green-500/70" />
+          <span className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
+          <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
+          <span className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
         </div>
-        <button
+        <Button
           onClick={handleCopy}
           aria-label="Copy code"
-          className="flex items-center gap-1.5 rounded-md px-2 py-1 text-xs text-muted transition-colors hover:bg-border hover:text-foreground"
+          variant="ghost"
+          size="sm"
+          className="h-8 px-2 text-xs text-muted-foreground"
         >
           {copyState === "success" ? (
             <>
-              <FiCheck size={12} />
+              <LuCheck size={12} />
               Copied
             </>
           ) : copyState === "error" ? (
             <>
-              <FiX size={12} />
+              <LuX size={12} />
               Failed
             </>
           ) : (
             <>
-              <FiCopy size={12} />
+              <LuCopy size={12} />
               Copy
             </>
           )}
-        </button>
+        </Button>
       </div>
       <CodeMirror
         editable={editable}
@@ -72,8 +75,8 @@ export const CodeBlock: FC<Props> = ({
         extensions={[StreamLanguage.define(go)]}
         theme={tokyoNight}
         onChange={(value) => onChange(value)}
-        height="280px"
-        maxHeight="280px"
+        height="300px"
+        maxHeight="300px"
         style={{ fontSize: "13px" }}
       />
     </div>

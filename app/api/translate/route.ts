@@ -1,7 +1,7 @@
 import { TranslateBody } from "../../types/types";
 import { createPrompt } from "../../utils";
 import { createGroq } from "@ai-sdk/groq";
-import { streamText } from "ai";
+import { generateText } from "ai";
 
 export const runtime = "edge";
 
@@ -16,13 +16,20 @@ export async function POST(req: Request): Promise<Response> {
 
     const prompt = createPrompt(inputLanguage, outputLanguage, inputCode);
 
-    const result = await streamText({
+    const result = await generateText({
       model: groq(model),
-      messages: [{ role: "user", content: prompt }],
+      prompt,
       temperature: 0,
     });
 
-    return result.toTextStreamResponse();
+    const text = result.text?.trim();
+    if (!text) {
+      return new Response("Empty response from model.", { status: 502 });
+    }
+
+    return new Response(text, {
+      headers: { "Content-Type": "text/plain; charset=utf-8" },
+    });
   } catch (error) {
     console.error(error);
     return new Response("Error", { status: 500 });

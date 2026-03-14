@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FiMoon, FiSun } from "react-icons/fi";
+import { LuMoon, LuSun } from "react-icons/lu";
+import { Button } from "./ui/button";
 
 const THEME_KEY = "codeshifter-theme";
 
@@ -29,14 +30,16 @@ export const ThemeToggle = () => {
   };
 
   return (
-    <button
+    <Button
       type="button"
       onClick={toggleTheme}
       aria-label="Toggle theme"
       aria-pressed={theme === "light"}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface/80 text-foreground transition hover:border-accent/60 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+      variant="ghost"
+      size="icon"
+      className="rounded-full border border-border/60 bg-background/70 text-foreground hover:text-foreground"
     >
-      {theme === "dark" ? <FiMoon size={16} /> : <FiSun size={16} />}
-    </button>
+      {theme === "dark" ? <LuMoon size={16} /> : <LuSun size={16} />}
+    </Button>
   );
 };

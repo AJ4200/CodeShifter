@@ -2,22 +2,49 @@
 @source "./**/*.{js,ts,jsx,tsx,mdx}";
 
 :root {
-  /* Dark developer theme */
-  --color-bg: #0d0d0f;
-  --color-surface: #141417;
-  --color-border: #232328;
-  --color-foreground: #e8e8ed;
-  --color-muted: #6b6b78;
-  --color-accent: #f97316; /* orange accent */
+  --background: 210 30% 5%;
+  --foreground: 0 0% 98%;
+  --card: 210 25% 8%;
+  --card-foreground: 0 0% 98%;
+  --popover: 210 25% 8%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 188 100% 50%;
+  --primary-foreground: 210 30% 6%;
+  --secondary: 210 18% 14%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 210 16% 16%;
+  --muted-foreground: 210 12% 65%;
+  --accent: 188 100% 50%;
+  --accent-foreground: 210 30% 6%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 210 20% 22%;
+  --input: 210 20% 22%;
+  --ring: 188 100% 50%;
+  --radius: 0.9rem;
 }
 
 :root[data-theme="light"] {
-  --color-bg: #f6f7fb;
-  --color-surface: #ffffff;
-  --color-border: #e3e5ec;
-  --color-foreground: #121318;
-  --color-muted: #5a5f6d;
-  --color-accent: #2563eb; /* blue accent */
+  --background: 0 0% 100%;
+  --foreground: 210 28% 10%;
+  --card: 0 0% 98%;
+  --card-foreground: 210 28% 10%;
+  --popover: 0 0% 98%;
+  --popover-foreground: 210 28% 10%;
+  --primary: 189 100% 40%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 20% 94%;
+  --secondary-foreground: 210 28% 10%;
+  --muted: 210 20% 94%;
+  --muted-foreground: 210 12% 45%;
+  --accent: 189 100% 40%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 210 16% 88%;
+  --input: 210 16% 88%;
+  --ring: 189 100% 40%;
+  --radius: 0.9rem;
 }
 
 @layer base {
@@ -30,15 +57,19 @@
   }
 
   body {
-    background-color: var(--color-bg);
-    color: var(--color-foreground);
-    font-family: var(--font-montserrat), ui-sans-serif, system-ui;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   * {
-    border-color: var(--color-border);
+    border-color: hsl(var(--border));
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.25);
+    color: hsl(var(--foreground));
   }
 
   ::-webkit-scrollbar {
@@ -47,15 +78,15 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--color-bg);
+    background: hsl(var(--background));
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--color-border);
+    background: hsl(var(--border));
     border-radius: 3px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-muted);
+    background: hsl(var(--muted-foreground));
   }
 }
