@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -166,16 +166,13 @@ export default function HomePage() {
         aria-hidden={!showSplash}
       >
         <div className="flex flex-col items-center gap-4 text-center">
-          <LogoMark
-            className="h-16 w-16 animate-float shadow-lg shadow-black/20"
-            labelClassName="text-sm tracking-[0.3em]"
-          />
+          <LogoMark className="h-16 w-16 animate-float shadow-lg shadow-black/20" />
           <div className="space-y-1">
             <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
               CodeShifter
             </p>
             <p className="text-base font-semibold text-foreground">
-              Shift code with cyan precision
+              Groq-powered code translation
             </p>
           </div>
         </div>
@@ -453,3 +450,4 @@ export default function HomePage() {
     </div>
   );
 }
+
