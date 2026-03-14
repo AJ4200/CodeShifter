@@ -22,7 +22,7 @@ export const TextBlock: React.FC<Props> = ({
         className="h-[280px] w-full resize-none bg-transparent p-4 font-mono text-sm leading-relaxed text-foreground placeholder:text-muted focus:outline-none"
         value={text}
         onChange={(e) => onChange(e.target.value)}
-        disabled={!editable}
+        readOnly={!editable}
         placeholder={editable ? "Describe your code in plain English..." : ""}
       />
     </div>

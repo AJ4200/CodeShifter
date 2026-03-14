@@ -1,5 +1,5 @@
-import { TranslateBody } from "@/types/types";
-import { createPrompt } from "@/utils";
+import { TranslateBody } from "../../types/types";
+import { createPrompt } from "../../utils";
 import { createGroq } from "@ai-sdk/groq";
 import { streamText } from "ai";
 

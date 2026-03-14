@@ -1,4 +1,4 @@
-import { GroqModel } from "@/types/types";
+﻿import { GroqModel } from "../types/types";
 import { FC } from "react";
 
 interface Props {
@@ -34,16 +34,17 @@ export const ModelSelect: FC<Props> = ({ model, onChange }) => {
     <div className="flex flex-col gap-1">
       <label className="text-xs font-medium text-muted">Model</label>
       <select
-        className="rounded-lg border border-border bg-surface px-3 py-2 text-sm text-foreground transition-colors focus:border-accent focus:outline-none"
+        className="rounded-lg border border-border bg-surface px-3 py-2 text-sm text-foreground transition-colors focus:border-accent focus:outline-none hover:border-accent/70"
         value={model}
         onChange={(e) => onChange(e.target.value as GroqModel)}
       >
         {MODELS.map((m) => (
           <option key={m.value} value={m.value} className="bg-surface">
-            {m.label} — {m.description}
+            {m.label} - {m.description}
           </option>
         ))}
       </select>
     </div>
   );
 };
+

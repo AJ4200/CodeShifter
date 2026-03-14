@@ -4,6 +4,7 @@ interface Props {
   language: string;
   onChange: (language: string) => void;
   label?: string;
+  disabled?: boolean;
 }
 
 const languages = [
@@ -55,12 +56,20 @@ const languages = [
   { value: "Vue", label: "Vue" },
 ];
 
-export const LanguageSelect: FC<Props> = ({ language, onChange, label }) => {
+export const LanguageSelect: FC<Props> = ({
+  language,
+  onChange,
+  label,
+  disabled = false,
+}) => {
   return (
     <div className="flex flex-col gap-1">
       {label && <label className="text-xs font-medium text-muted">{label}</label>}
       <select
-        className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-foreground transition-colors focus:border-accent focus:outline-none"
+        disabled={disabled}
+        className={`w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-foreground transition-colors focus:border-accent focus:outline-none ${
+          disabled ? "cursor-not-allowed opacity-60" : "hover:border-accent/70"
+        }`}
         value={language}
         onChange={(e) => onChange(e.target.value)}
       >

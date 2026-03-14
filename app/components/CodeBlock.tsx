@@ -5,7 +5,8 @@ import { go } from "@codemirror/legacy-modes/mode/go";
 import { tokyoNight } from "@uiw/codemirror-theme-tokyo-night";
 import CodeMirror from "@uiw/react-codemirror";
 import { FC, useEffect, useState } from "react";
-import { FiCheck, FiCopy } from "react-icons/fi";
+import { FiCheck, FiCopy, FiX } from "react-icons/fi";
+import { copyToClipboard } from "../utils/copy";
 
 interface Props {
   code: string;
@@ -18,17 +19,20 @@ export const CodeBlock: FC<Props> = ({
   editable = false,
   onChange = () => {},
 }) => {
-  const [copied, setCopied] = useState(false);
+  const [copyState, setCopyState] = useState<"idle" | "success" | "error">(
+    "idle",
+  );
 
   useEffect(() => {
-    if (copied) {
-      const t = setTimeout(() => setCopied(false), 2000);
+    if (copyState !== "idle") {
+      const t = setTimeout(() => setCopyState("idle"), 2000);
       return () => clearTimeout(t);
     }
-  }, [copied]);
+  }, [copyState]);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(code).then(() => setCopied(true));
+  const handleCopy = async () => {
+    const ok = await copyToClipboard(code);
+    setCopyState(ok ? "success" : "error");
   };
 
   return (
@@ -44,10 +48,15 @@ export const CodeBlock: FC<Props> = ({
           aria-label="Copy code"
           className="flex items-center gap-1.5 rounded-md px-2 py-1 text-xs text-muted transition-colors hover:bg-border hover:text-foreground"
         >
-          {copied ? (
+          {copyState === "success" ? (
             <>
               <FiCheck size={12} />
               Copied
+            </>
+          ) : copyState === "error" ? (
+            <>
+              <FiX size={12} />
+              Failed
             </>
           ) : (
             <>

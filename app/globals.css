@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@source "./**/*.{js,ts,jsx,tsx,mdx}";
 
 :root {
   /* Dark developer theme */
@@ -12,15 +11,28 @@
   --color-accent: #f97316; /* orange accent */
 }
 
+:root[data-theme="light"] {
+  --color-bg: #f6f7fb;
+  --color-surface: #ffffff;
+  --color-border: #e3e5ec;
+  --color-foreground: #121318;
+  --color-muted: #5a5f6d;
+  --color-accent: #2563eb; /* blue accent */
+}
+
 @layer base {
   html {
     color-scheme: dark;
   }
 
+  html[data-theme="light"] {
+    color-scheme: light;
+  }
+
   body {
     background-color: var(--color-bg);
     color: var(--color-foreground);
-    font-family: var(--font-sans), ui-monospace, monospace;
+    font-family: var(--font-montserrat), ui-sans-serif, system-ui;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
